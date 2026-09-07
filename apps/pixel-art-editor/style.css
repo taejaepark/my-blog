@@ -1,0 +1,240 @@
+:root {
+  --bg: #f5f5f5;
+  --text: #1a1a1a;
+  --panel-bg: #ffffff;
+  --panel-border: #dddddd;
+  --grid-line: #cccccc;
+  --grid-bg: #ffffff;
+  --btn-bg: #ffffff;
+  --btn-border: #cccccc;
+  --btn-hover-bg: #eeeeee;
+  --accent: #3b82f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a1a;
+    --text: #f0f0f0;
+    --panel-bg: #262626;
+    --panel-border: #3a3a3a;
+    --grid-line: #444444;
+    --grid-bg: #2b2b2b;
+    --btn-bg: #2f2f2f;
+    --btn-border: #4a4a4a;
+    --btn-hover-bg: #3a3a3a;
+    --accent: #60a5fa;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --text: #f0f0f0;
+  --panel-bg: #262626;
+  --panel-border: #3a3a3a;
+  --grid-line: #444444;
+  --grid-bg: #2b2b2b;
+  --btn-bg: #2f2f2f;
+  --btn-border: #4a4a4a;
+  --btn-hover-bg: #3a3a3a;
+  --accent: #60a5fa;
+}
+
+:root[data-theme="light"] {
+  --bg: #f5f5f5;
+  --text: #1a1a1a;
+  --panel-bg: #ffffff;
+  --panel-border: #dddddd;
+  --grid-line: #cccccc;
+  --grid-bg: #ffffff;
+  --btn-bg: #ffffff;
+  --btn-border: #cccccc;
+  --btn-hover-bg: #eeeeee;
+  --accent: #3b82f6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.app-header h1 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+.app-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem 1.25rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.canvas-area {
+  display: flex;
+  justify-content: center;
+}
+
+#pixel-canvas {
+  width: min(90vw, 400px);
+  height: min(90vw, 400px);
+  background: var(--grid-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(90vw, 320px);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 4px;
+  border: 2px solid var(--panel-border);
+  cursor: pointer;
+  padding: 0;
+}
+
+.color-swatch.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.tool-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tool-btn {
+  min-height: 44px;
+  padding: 0 0.9rem;
+  border-radius: 6px;
+  border: 2px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.tool-btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+.tool-btn.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.current-color-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.current-color-swatch {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid var(--panel-border);
+  background-image:
+    linear-gradient(45deg, #ccc 25%, transparent 25%),
+    linear-gradient(-45deg, #ccc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ccc 75%),
+    linear-gradient(-45deg, transparent 75%, #ccc 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+}
+
+#custom-color {
+  width: 44px;
+  height: 44px;
+  padding: 2px;
+  border-radius: 6px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  cursor: pointer;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.action-btn {
+  flex: 1 1 auto;
+  min-height: 44px;
+  padding: 0 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.action-btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+@media (max-width: 600px) {
+  .app-main {
+    flex-direction: column;
+    align-items: center;
+  }
+}
