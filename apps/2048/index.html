@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>2048</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <h1 class="title">2048</h1>
+    <button id="theme-toggle" class="icon-btn" aria-label="다크모드 전환">🌙</button>
+  </header>
+
+  <div class="top-bar">
+    <div class="scoreboard">
+      <div class="score-box">
+        <span class="score-label">점수</span>
+        <span id="score" class="score-value">0</span>
+      </div>
+      <div class="score-box">
+        <span class="score-label">최고 점수</span>
+        <span id="best-score" class="score-value">0</span>
+      </div>
+    </div>
+    <button id="new-game-btn" class="btn">새 게임</button>
+  </div>
+
+  <div class="board-wrapper">
+    <div id="board" class="board"></div>
+
+    <div id="win-overlay" class="overlay" hidden>
+      <p class="overlay-message">You Win!</p>
+      <button class="btn overlay-restart" data-restart>다시 시작</button>
+    </div>
+    <div id="lose-overlay" class="overlay" hidden>
+      <p class="overlay-message">Game Over</p>
+      <button class="btn overlay-restart" data-restart>다시 시작</button>
+    </div>
+  </div>
+
+  <div class="controls-pad" aria-label="방향 버튼">
+    <button class="control-btn control-up" data-direction="up" aria-label="위로 이동">▲</button>
+    <div class="control-row">
+      <button class="control-btn control-left" data-direction="left" aria-label="왼쪽으로 이동">◀</button>
+      <button class="control-btn control-down" data-direction="down" aria-label="아래로 이동">▼</button>
+      <button class="control-btn control-right" data-direction="right" aria-label="오른쪽으로 이동">▶</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

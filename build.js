@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync, cpSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { marked } from 'marked';
 import { parseFrontmatter } from './lib/frontmatter.js';
@@ -58,5 +58,9 @@ const indexHtml = layout({ title: 'My Blog', body: indexPage(posts) });
 writeFileSync(join(DIST_DIR, 'index.html'), indexHtml);
 
 cpSync('assets', join(DIST_DIR, 'assets'), { recursive: true });
+
+if (existsSync('apps')) {
+  cpSync('apps', join(DIST_DIR, 'apps'), { recursive: true });
+}
 
 console.log(`Built ${posts.length} post(s) → ${DIST_DIR}/`);
